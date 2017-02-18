@@ -11,6 +11,7 @@ module.exports = buildFlow.create()
     .defineRequiredOption('source')
     .defineOption('flags', {})
     .defineOption('sourcemap', false)
+    .defineOption('compilationLevel', 'ADVANCED')
     .useSourceText('source')
     .builder(function (source) {
         var sourcemap = this._sourcemap,
@@ -18,7 +19,7 @@ module.exports = buildFlow.create()
             target = this._target,
             compiled = compile(Object.assign({
                 jsCode: [{ src: source }],
-                compilationLevel: 'ADVANCED',
+                compilationLevel: this._compilationLevel,
                 createSourceMap: sourcemap
             }, this._flags));
 
